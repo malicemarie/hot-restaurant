@@ -1,0 +1,24 @@
+{
+  "name": "hot-restaurant",
+  "version": "1.0.0",
+  "description": "In Class Activity 02/08",
+  "main": "server.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/malicemarie/hot-restaurant.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/malicemarie/hot-restaurant/issues"
+  },
+  "homepage": "https://github.com/malicemarie/hot-restaurant#readme"
+}
