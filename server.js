@@ -23,7 +23,16 @@ app.use(express.json());
 // Data
 // =============================================================
 
-let currentReservations = [];
+let currentReservations = [
+  {
+    name: "dane",
+    id: 1
+  },
+  {
+    name: "Thod",
+    id: 2
+  }
+];
 let waitList = [];
 
 // =============================================================
@@ -35,16 +44,13 @@ app.get("/tables", (req, res) =>
   res.sendFile(path.join(__dirname, "view.html"))
 );
 
-sz;
-// req.body hosts is equal to the JSON post sent from the user
-// This works because of our body parsing middleware
-app.get("/reserve", (req, res) =>
+app.get("/reservation", (req, res) =>
   res.sendFile(path.join(__dirname, "reservation.html"))
 );
 
 // Displays current reservations & waitlist
 app.get("/api/tables", (req, res) => res.json(currentReservations));
-app.get("/api/tables", (req, res) => res.json(waitList));
+// app.get("/api/tables", (req, res) => res.json(waitList));
 
 // Displays the reservations array until 5 or returns false
 app.get("/api/tables/", (req, res) => {
@@ -54,12 +60,10 @@ app.get("/api/tables/", (req, res) => {
   console.log(tableData);
   console.log(waitListData);
 
-  for (const i = 0; i < tableData.length; ++i) {
-    if (tableData[i] < 4) {
-      tableData.push(newReservation);
-    } else {
-      waitList.push(newReservation);
-    }
+  if (tableData.length < 4) {
+    tableData.push(newReservation);
+  } else {
+    waitList.push(newReservation);
   }
 
   return res.json(false);
@@ -67,21 +71,21 @@ app.get("/api/tables/", (req, res) => {
 // Displays the waitlist array or returns false
 
 // Create New reservation until we have 5 reservations
-app.post("/api/tables", (req, res) => {
+app.post("/api/reservation", (req, res) => {
   // req.body hosts is equal to the JSON post sent from the user
   // This works because of our body parsing middleware
-  const newReservation = req.body;
+  const tableData = req.body;
   // newReservation.routeName = newReservation.name.replace(/\s+/g, '').toLowerCase();
-  console.log(newReservation);
+  console.log(tableData);
 
-  for (const i = 0; i < currentReservations.length; ++i) {
-    if (currentReservations[i] < 4) {
-      currentReservations.push(newReservation);
-    } else {
-      waitList.push(newReservation);
-    }
+  if (currentReservations.length < 4) {
+    currentReservations.push(tableData);
+  } else {
+    waitList.push(tableData);
   }
-  res.json(newReservation);
+
+  currentReservations.push(tableData);
+  res.json(tableData);
 });
 
 app.listen(PORT, () => console.log("App listening on PORT " + PORT));

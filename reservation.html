@@ -11,6 +11,7 @@
       rel="stylesheet"
       href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
     />
+    <script src="https://code.jquery.com/jquery.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
   </head>
   <body>
@@ -19,7 +20,7 @@
         <h1>Hot Restaurant</h1>
         <h3>Make your Reservation!</h3>
         <hr />
-        <a href="view.html"
+        <a href="/tables"
           ><button class="btn btn-danger btn-lg">
             <span class="fa fa-eye"></span> View Tables
           </button></a
@@ -88,11 +89,9 @@
             .val()
             .trim()
         };
-
-        // Question: What does this code do??
-        $.post("/api/reservations", newReservation)
+        $.post("/api/reservation", newReservation)
           .then(data => {
-            console.log("reservations.html", data);
+            console.log("reservation.html", data);
             alert(`Added ${data.name}!`);
           })
           .fail(err => console.error(err));
