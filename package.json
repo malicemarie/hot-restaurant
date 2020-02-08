@@ -20,5 +20,9 @@
   "bugs": {
     "url": "https://github.com/malicemarie/hot-restaurant/issues"
   },
-  "homepage": "https://github.com/malicemarie/hot-restaurant#readme"
+  "homepage": "https://github.com/malicemarie/hot-restaurant#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "path": "^0.12.7"
+  }
 }
